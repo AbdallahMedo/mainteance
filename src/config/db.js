@@ -7,17 +7,19 @@ const sequelize = new Sequelize(
   process.env.DB_PASS,
   {
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 1433, // <-- مهم
     dialect: "mssql",
     logging: false,
     dialectOptions: {
       options: {
-        encrypt: false,
-        trustServerCertificate: true,
+        encrypt: true,                 // لو السيرفر يدعم TLS
+        trustServerCertificate: true,  // لو ما عندكش شهادة موثوقة
         enableArithAbort: true,
       },
     },
   }
 );
+
 
 async function connectDB() {
   try {

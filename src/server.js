@@ -3,7 +3,6 @@ require("dotenv").config();
 const app = require("./app");
 const { connectDB, sequelize } = require("./config/db");
 
-
 console.log("🟢 server.js loaded");
 
 (async () => {
@@ -18,11 +17,13 @@ console.log("🟢 server.js loaded");
 
     console.log("➡️ Step 3: Starting server...");
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`🚀 Server running on ${BASE_URL}`);
     });
 
-    // خطوة اختيارية: تلتقط أي خطأ غير متوقع وتمنع nodemon من الخروج
+    // التعامل مع الأخطاء غير المعالجة
     process.on("unhandledRejection", (err) => {
       console.error("🔥 UNHANDLED REJECTION:", err);
     });

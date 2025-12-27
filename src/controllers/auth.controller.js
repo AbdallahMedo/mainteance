@@ -1,7 +1,7 @@
   const bcrypt = require("bcryptjs");
   const jwt = require("jsonwebtoken");
   const { Op } = require("sequelize"); 
-  const User = require("../models/User");
+  const User = require("../models/user");
   const sendEmail = require("../utils/sendEmail");
 
 /* REGISTER */

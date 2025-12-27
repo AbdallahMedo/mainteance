@@ -2,6 +2,7 @@
   const jwt = require("jsonwebtoken");
   const { Op } = require("sequelize"); 
   const User = require("../models/user");
+  console.log("✅ User model loaded:", User === undefined ? "NO" : "YES");
   const sendEmail = require("../utils/sendEmail");
 
 /* REGISTER */
@@ -12,7 +13,6 @@ exports.register = async (req, res) => {
     if (password !== confirmPassword)
       return res.status(400).json({ message: "Password mismatch" });
 
-    // تحقق من وجود البريد أو رقم الهاتف مسبقًا
     const existingUser = await User.findOne({
       where: {
         [Op.or]: [{ email }, { phone }]

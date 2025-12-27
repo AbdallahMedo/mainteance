@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
     logging: false,
     dialectOptions: {
       options: {
-        encrypt: true,
+        encrypt: false,
         trustServerCertificate: true,
         enableArithAbort: true,
       },
